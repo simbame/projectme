@@ -37,13 +37,13 @@
   }
 }
 
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 1000px) {
   .hide-item {
     display: none;
   }
 
   .expand-item {
-    width: 80%;
+    width: 100%;
   }
 }
 

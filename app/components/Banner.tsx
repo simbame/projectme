@@ -5,8 +5,8 @@ import Close from "../../public/img/close.svg";
 
 const Banner = () => {
   return (
-    <div>
-      <div className="relative flex rounded-lg  banner-bg-color mx-36 my-8">
+    <div className="w-full flex justify-center">
+      <div className="max-w-6xl flex rounded-lg banner-bg-color">
         <Image
           src={BannerImg}
           width={248}

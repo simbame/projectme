@@ -25,6 +25,7 @@ export default function Page() {
         </div>
         <p className="pl-5">Jan 24, 2024</p>
       </div>
+
       <div className="flex justify-between items-center relative rounded-2xl gradient-color w-100 min-w-80 h-44 m-0.5 p-6 mt-1 ml-3">
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold">Current Balance</p>
