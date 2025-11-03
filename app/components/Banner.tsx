@@ -23,7 +23,7 @@ const Banner = () => {
         />
 
         <div className="w-13/18 p-10 txt-main-color flex flex-col gap-4 min-w-[600px]">
-          <p className="font-bold text-3xl">Welcome</p>
+          <p className="font-bold text-3xl">Welcome👋</p>
           <p className="font-bold text-3xl">Amit Singh</p>
           <p>
             Take control of investments and returns in one place - track

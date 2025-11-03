@@ -14,16 +14,16 @@ function AccountLinkButton(props: Props) {
   return (
     <Link
       href={props.href}
-      className={`${props.className} focus:underline text-gray-700 focus:text-green-900 font-bold`}
+      className={`${props.className} focus:underline text-[#637381] focus:text-green-900 font-bold`}
     >
-      <div className="flex">
+      <div className="flex gap-2">
         <Image
           src={props.imageSrc}
           width="20"
           height="16"
           alt="Author is Simba"
         />
-        <p>{props.content}</p>
+        <p className="hide-item">{props.content}</p>
       </div>
     </Link>
   );

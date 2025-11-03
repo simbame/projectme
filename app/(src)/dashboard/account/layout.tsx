@@ -2,7 +2,10 @@ import React from "react";
 import AccountLinkButton from "@/app/components/AccountLinkButton";
 import general from "../../../../public/img/dashboard/account/general.svg";
 import subscription from "../../../../public/img/dashboard/account/subscription.svg";
+import smallSubscription from "../../../../public/img/dashboard/account/subscription2.svg";
 import notification from "../../../../public/img/dashboard/account/notification.svg";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function AccountLayout({
   children,
@@ -18,19 +21,37 @@ export default function AccountLayout({
           we can tailor our offeringa and elevate your overall experience.
         </p>
       </div>
-      <div className="flex gap-5 mt-10">
+      <div className="flex gap-10 mt-10">
         <AccountLinkButton
           href="/dashboard/account/general"
           className=""
           content="General"
           imageSrc={general}
         />
-        <AccountLinkButton
+        <Link
           href="/dashboard/account/subscription"
-          className=""
-          content="Subscription"
-          imageSrc={subscription}
-        />
+          className={`focus:underline text-[#637381] focus:text-green-900 font-bold`}
+        >
+          <div className="flex gap-2 relative">
+            <div className="relative">
+              <Image
+                src={subscription}
+                width="20"
+                height="16"
+                alt="Author is Simba"
+              />
+              <Image
+                src={smallSubscription}
+                width="8"
+                height="5"
+                alt="Author is Simba"
+                className="absolute left-3 top-0"
+              />
+            </div>
+            <span className="absolute text-white left-1">₹</span>
+            <p className="hide-item">Subscription</p>
+          </div>
+        </Link>
         <AccountLinkButton
           href="/dashboard/account/notification"
           className=""

@@ -9,7 +9,7 @@ function AppBar() {
   return (
     <div className="flex gap-5 justify-center items-center py-2 border-t-2 border-b-2 border-dashed border-gray-200 max-sm:flex-col">
       {/* <nav> */}
-      <Link href="/dashboard/overview">
+      <Link href="/dashboard/overview" className="focus:bg-[#E9F1EE]">
         <Image
           src={Overview}
           width={140}
@@ -18,7 +18,7 @@ function AppBar() {
           className="hover:bg-[#E9F1EE]"
         />
       </Link>
-      <Link href="/dashboard/transactions">
+      <Link href="/dashboard/transactions" className="focus:bg-[#E9F1EE]">
         <Image
           src={Transactions}
           width={164}
@@ -27,7 +27,7 @@ function AppBar() {
           className="hover:bg-[#E9F1EE]"
         />
       </Link>
-      <Link href="/dashboard/account">
+      <Link href="/dashboard/account" className="focus:bg-[#E9F1EE]">
         <Image
           src={Account}
           width={133}
