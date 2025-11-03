@@ -1,21 +1,28 @@
+"use client";
+
 import React from "react";
 import BannerImg from "../../public/img/banner.svg";
 import Image from "next/image";
 import Close from "../../public/img/close.svg";
 
 const Banner = () => {
+  const closeBanner = () => {
+    const closeComp: HTMLElement | null = document.getElementById("close");
+    if (closeComp != null) closeComp.style.display = "none";
+  };
+
   return (
-    <div className="w-full flex justify-center">
-      <div className="max-w-6xl flex rounded-lg banner-bg-color">
+    <div className="w-full flex justify-center p-8 max-sm:hidden" id="close">
+      <div className="relative max-w-6xl flex rounded-lg banner-bg-color">
         <Image
           src={BannerImg}
           width={248}
           height={164}
           alt="Author by Simba"
-          className=" w-5/18 p-10 hide-item min-w-5/18"
+          className=" w-5/18 p-10 hide-item min-w-[324px]"
         />
 
-        <div className="w-13/18 p-10 txt-main-color flex flex-col gap-4">
+        <div className="w-13/18 p-10 txt-main-color flex flex-col gap-4 min-w-[600px]">
           <p className="font-bold text-3xl">Welcome</p>
           <p className="font-bold text-3xl">Amit Singh</p>
           <p>
@@ -27,7 +34,9 @@ const Banner = () => {
             Membership Date: 16th October 2023
           </p>
         </div>
-        <div className="absolute top-2 right-2">X</div>
+        <div className="absolute top-2 right-2" onClick={closeBanner}>
+          <Image src={Close} width={20} height={20} alt="Authorized by Simba" />
+        </div>
       </div>
     </div>
   );

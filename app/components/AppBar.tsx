@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function AppBar() {
   return (
-    <div className="flex gap-5 justify-center items-center py-2 border-t-2 border-b-2 border-dashed border-gray-200">
+    <div className="flex gap-5 justify-center items-center py-2 border-t-2 border-b-2 border-dashed border-gray-200 max-sm:flex-col">
       {/* <nav> */}
       <Link href="/dashboard/overview">
         <Image
