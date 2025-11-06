@@ -1,18 +1,20 @@
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+import { ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import { Button, Tooltip } from "@mui/material";
-import fire_big from "../../../../public/img/fire_big.svg";
-import fire_small from "../../../../public/img/fire_small.svg";
-import fire_smallest from "../../../../public/img/smallestFire.svg";
-import Image from "next/image";
 import Mark from "@/app/components/Mark";
-import { useState } from "react";
-import theme from "../../theme";
-import { ThemeProvider } from "@mui/material/styles";
-
+import Image from "next/image";
 import * as React from "react";
+
+import { useState } from "react";
+
+import fire_smallest from "../../../../public/img/smallestFire.svg";
+import fire_small from "../../../../public/img/fire_small.svg";
+import fire_big from "../../../../public/img/fire_big.svg";
+import theme from "../../theme";
+
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -88,8 +90,8 @@ export default function DashboardLayout({
     <ThemeProvider theme={theme}>
       <div className="items-center h-full flex">
         <div className="w-1/3 flex flex-col justify-center items-center gap-5 text-center expand-item px-5 min-w-[370px]">
-          <div className="w-[352px] flex flex-col gap-16">
-            <p className="text-3xl font-bold pb-10 pl-5 pr-5">
+          <div className="w-[352px] flex flex-col gap-10">
+            <p className="text-3xl font-bold">
               Welcome!
               <br />
               Sign in to continue

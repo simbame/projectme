@@ -1,17 +1,22 @@
+"use client";
+
 import React from "react";
 import AccountLinkButton from "@/app/components/AccountLinkButton";
 import general from "../../../../public/img/dashboard/account/general.svg";
-import subscription from "../../../../public/img/dashboard/account/subscription.svg";
+import subscriptions from "../../../../public/img/dashboard/account/subscription.svg";
 import smallSubscription from "../../../../public/img/dashboard/account/subscription2.svg";
 import notification from "../../../../public/img/dashboard/account/notification.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathName = usePathname();
+  const segmentURL = pathName.substring(pathName.lastIndexOf("/") + 1);
   return (
     <div className="py-9 px-36">
       <div>
@@ -24,18 +29,22 @@ export default function AccountLayout({
       <div className="flex gap-10 mt-10">
         <AccountLinkButton
           href="/dashboard/account/general"
-          className=""
+          className={`${
+            segmentURL === "general" ? "underline text-green-900" : ""
+          } `}
           content="General"
           imageSrc={general}
         />
         <Link
-          href="/dashboard/account/subscription"
-          className={`focus:underline text-[#637381] focus:text-green-900 font-bold`}
+          href="/dashboard/account/subscriptions"
+          className={`focus:underline text-[#637381] focus:text-green-900 font-bold ${
+            segmentURL === "subscriptions" ? "underline text-green-900" : ""
+          }`}
         >
           <div className="flex gap-2 relative">
             <div className="relative">
               <Image
-                src={subscription}
+                src={subscriptions}
                 width="20"
                 height="16"
                 alt="Author is Simba"
@@ -54,7 +63,9 @@ export default function AccountLayout({
         </Link>
         <AccountLinkButton
           href="/dashboard/account/notification"
-          className=""
+          className={`${
+            segmentURL === "notification" ? "underline text-green-900" : ""
+          }`}
           content="Notification"
           imageSrc={notification}
         />

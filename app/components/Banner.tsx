@@ -12,7 +12,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="w-full flex justify-center p-8 max-sm:hidden" id="close">
+    <div className="w-full flex justify-center pt-8 max-md:hidden" id="close">
       <div className="relative max-w-6xl flex rounded-lg banner-bg-color">
         <Image
           src={BannerImg}

@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { createTheme } from "@mui/material";
-// import { ThemeProvider } from "@mui/material/styles";
-
-// const customTheme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#1d563d", // Your desired main color (e.g., orange)
-//     },
-//     secondary: {
-//       main: "#4CAF50", // Another custom color
-//     },
-//   },
-// });
+import Mark from "./components/Mark";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,13 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <ThemeProvider theme={customTheme}> */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
+        <Mark />
         {children}
       </body>
-      {/* </ThemeProvider> */}
     </html>
   );
 }
