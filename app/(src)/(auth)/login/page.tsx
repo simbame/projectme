@@ -24,12 +24,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PopperProps } from "@mui/material";
 
-type Inputs = {
-  email: string;
-  password: string;
-};
+import { Inputs } from "../../common/types";
+import { login } from "@/app/services/api";
 
-export default function DashboardLayout({
+export default function LoginLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -42,8 +40,16 @@ export default function DashboardLayout({
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleLogin = async () => {
+    try {
+      const user = await login(email, password);
+      console.log(user);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   const emailRegexp = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]+$/;
 
@@ -157,6 +163,7 @@ export default function DashboardLayout({
                       variant="contained"
                       sx={{ width: "100%" }}
                       type="submit"
+                      onClick={handleLogin}
                     >
                       Sign in
                     </Button>
