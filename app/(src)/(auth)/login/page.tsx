@@ -9,6 +9,7 @@ import Image from "next/image";
 import * as React from "react";
 
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 import fire_smallest from "../../../../public/img/smallestFire.svg";
 import fire_small from "../../../../public/img/fire_small.svg";
@@ -26,7 +27,7 @@ import { PopperProps } from "@mui/material";
 
 import { Inputs } from "../../common/types";
 import { login } from "@/app/services/api";
-
+import { saveUser, getUser, clearUser } from "@/app/localStorage/local_storage";
 export default function LoginLayout({
   children,
 }: Readonly<{
@@ -41,13 +42,23 @@ export default function LoginLayout({
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = React.useState(false);
+  // const currentUrl = usePathname();
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
       const user = await login(email, password);
       console.log(user);
+
+      saveUser({
+        email: user.email,
+        token: user.token,
+        isLoggedIn: true,
+      });
+      router.push("/dashboard/overview");
     } catch (error) {
       console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials.");
     }
   };
 
@@ -221,10 +232,10 @@ export default function LoginLayout({
             />
           </div>
           <div className="absolute flex flex-col gap-10 left-20 top-34 w-90 min-w-[556px]">
-            <p className="font-bold text-white text-6xl leading-20 ">
+            <div className="font-bold text-white text-6xl leading-20 ">
               <p>Support</p>
               <p> Greener Economy</p>
-            </p>
+            </div>
             <p className="text-white text-2xl">
               A Carbon Credit is an allowance for a company holding the credit
               to emit carbon emissions or greenhouse gasses.

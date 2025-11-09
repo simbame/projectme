@@ -1,29 +1,29 @@
 import { LocalStorageUser } from "../(src)/common/types";
 
-export const saveUserSettings = (users: LocalStorageUser) => {
+export const saveUser = (users: LocalStorageUser) => {
   try {
-    localStorage.setItem("userSettings", JSON.stringify(users));
+    localStorage.setItem("user", JSON.stringify(users));
   } catch (error) {
-    console.error("Error saving user settings:", error);
+    console.error("Error saving user:", error);
   }
 };
 
-export const getUserSettings = (): LocalStorageUser | null => {
+export const getUser = (): LocalStorageUser | null => {
   try {
-    const data = localStorage.getItem("userSettings");
+    const data = localStorage.getItem("user");
     if (data) {
       return JSON.parse(data);
     }
   } catch (error) {
-    console.error("Error getting user settings:", error);
+    console.error("Error getting user:", error);
   }
   return null;
 };
 
-export const clearUserSettings = () => {
+export const clearUser = () => {
   try {
-    localStorage.removeItem("userSettings");
+    localStorage.removeItem("user");
   } catch (error) {
-    console.error("Error clearing user settings:", error);
+    console.error("Error clearing user:", error);
   }
 };

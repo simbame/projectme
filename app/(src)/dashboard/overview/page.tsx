@@ -5,12 +5,9 @@ import Banner from "@/app/components/Banner";
 
 export default function Page() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <Banner />
-      <div className="flex gap-6 justify-center pt-8 max-md:flex-col items-center">
-        {/* <Image src={Summary1} width={400} height={200} alt="Authored by Simba" />
-      <Image src={Summary2} width={400} height={200} alt="Authored by Simba" /> */}
-
+      <div className="flex gap-6 justify-center items-center pt-8 max-md:flex-col max-w-6xl">
         <Summary />
         <Summary />
         <Summary />
