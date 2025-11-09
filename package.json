@@ -33,5 +33,10 @@
     "eslint-config-next": "16.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@mui/material-nextjs": {
+      "next": "16.0.0"
+    }
   }
 }

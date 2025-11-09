@@ -1,7 +1,6 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   href: string;
@@ -10,7 +9,7 @@ interface Props {
   imageSrc: StaticImport;
 }
 
-function AccountLinkButton(props: Props) {
+export const AccountLinkButton = (props: Props) => {
   return (
     <Link
       href={props.href}
@@ -27,6 +26,4 @@ function AccountLinkButton(props: Props) {
       </div>
     </Link>
   );
-}
-
-export default AccountLinkButton;
+};

@@ -1,14 +1,14 @@
 "use client";
-
-import React from "react";
-import AccountLinkButton from "@/app/components/AccountLinkButton";
-import general from "../../../../public/img/dashboard/account/general.svg";
-import subscriptions from "../../../../public/img/dashboard/account/subscription.svg";
-import smallSubscription from "../../../../public/img/dashboard/account/subscription2.svg";
-import notification from "../../../../public/img/dashboard/account/notification.svg";
-import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+import smallSubscription from "../../../../public/img/dashboard/account/subscription2.svg";
+import subscriptions from "../../../../public/img/dashboard/account/subscription.svg";
+import notification from "../../../../public/img/dashboard/account/notification.svg";
+import general from "../../../../public/img/dashboard/account/general.svg";
+import { AccountLinkButton } from "@/app/components/AccountLinkButton";
 
 export default function AccountLayout({
   children,

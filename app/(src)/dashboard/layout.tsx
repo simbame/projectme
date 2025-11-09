@@ -1,9 +1,10 @@
 "use client";
 
-import Header from "@/app/components/Header";
-import AppBar from "../../components/AppBar";
-import React from "react";
 import { usePathname } from "next/navigation";
+import React from "react";
+
+import { AppBar } from "../../components/AppBar";
+import { Header } from "@/app/components/Header";
 
 export default function DashboardLayout({
   children,
@@ -20,13 +21,11 @@ export default function DashboardLayout({
     setLoggedState(isLogged);
 
     if (!isLogged) {
-      // perform redirect as a side-effect, not during render
       window.location.href = "/login";
     }
   }, []);
 
   if (loggedState === null) {
-    // still checking auth — avoid performing side-effects or rendering until resolved
     return null;
   }
 

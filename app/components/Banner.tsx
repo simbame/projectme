@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
-import BannerImg from "../../public/img/banner.svg";
 import Image from "next/image";
+
+import BannerImg from "../../public/img/banner.svg";
 import Close from "../../public/img/close.svg";
 
-const Banner = () => {
+export const Banner = () => {
   const closeBanner = () => {
     const closeComp: HTMLElement | null = document.getElementById("close");
     if (closeComp != null) closeComp.style.display = "none";
@@ -41,5 +41,3 @@ const Banner = () => {
     </div>
   );
 };
-
-export default Banner;

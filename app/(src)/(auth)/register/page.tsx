@@ -1,53 +1,49 @@
 "use client";
 
-import { ThemeProvider } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import { Button, Tooltip } from "@mui/material";
-import Image from "next/image";
-import * as React from "react";
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-import fire_smallest from "../../../../public/img/smallestFire.svg";
-import fire_small from "../../../../public/img/fire_small.svg";
-import { saveUser } from "@/app/localStorage/localStorage";
-import fire_big from "../../../../public/img/fire_big.svg";
-import { Mark } from "@/app/components/Mark";
-import { login } from "@/app/services/api";
-import theme from "../../theme";
+import Image from "next/image";
+import * as React from "react";
 
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Visibility from "@mui/icons-material/Visibility";
+import { ThemeProvider } from "@mui/material/styles";
 import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
+import { Button, Tooltip } from "@mui/material";
 import { PopperProps } from "@mui/material";
+
+import fire_smallest from "../../../../public/img/smallestFire.svg";
+import fire_small from "../../../../public/img/fire_small.svg";
+import fire_big from "../../../../public/img/fire_big.svg";
+import { register } from "@/app/services/api";
+import { Mark } from "@/app/components/Mark";
+import theme from "../../theme";
 
 export default function LoginLayout({}: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showConfirm, setShowConfirm] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const user = await login(email, password);
+      const user = await register(name, email, password);
       console.log(user);
 
-      saveUser({
-        email: user.email,
-        token: user.token,
-        isLoggedIn: true,
-      });
-      router.push("/dashboard/overview");
+      router.push("/login");
     } catch (error) {
-      console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+      console.error("Register failed:", error);
+      alert("Register failed. Please check your credentials.");
     }
   };
 
@@ -58,8 +54,14 @@ export default function LoginLayout({}: Readonly<{
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowConfirm = () => setShowConfirm((show) => !show);
 
   const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+  const handleMouseDownConfirm = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
@@ -68,6 +70,9 @@ export default function LoginLayout({}: Readonly<{
   const handleMouseUpPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
+    event.preventDefault();
+  };
+  const handleMouseUpConfirm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -98,10 +103,20 @@ export default function LoginLayout({}: Readonly<{
             <p className="text-3xl font-bold">
               Welcome!
               <br />
-              Sign in to continue
+              Sign Up to continue
             </p>
             <div>
               <div className="flex flex-col gap-5">
+                <div className="w-full">
+                  <TextField
+                    id="outlined-disabled"
+                    label="Enter your username"
+                    sx={{ width: "100%" }}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                </div>
                 <div className="w-full">
                   <TextField
                     id="outlined-disabled"
@@ -149,23 +164,63 @@ export default function LoginLayout({}: Readonly<{
                     />
                   </FormControl>
                 </div>
+                <div className="w-full">
+                  <FormControl sx={{ width: "100%" }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">
+                      Confirm
+                    </InputLabel>
+                    <OutlinedInput
+                      id="outlined-adornment-password"
+                      type={showConfirm ? "text" : "password"}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label={
+                              showConfirm
+                                ? "hide the password"
+                                : "display the password"
+                            }
+                            onClick={handleClickShowConfirm}
+                            onMouseDown={handleMouseDownConfirm}
+                            onMouseUp={handleMouseUpConfirm}
+                            edge="end"
+                          >
+                            {showConfirm ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Confirm Password"
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value);
+                      }}
+                    />
+                  </FormControl>
+                </div>
                 <div className="w-full flex justify-end">
                   <a href="#" className="underline">
                     Forgot password?
                   </a>
                 </div>
                 <div className="w-full">
-                  {isValidEmail(email) && password && (
-                    <Button
-                      variant="contained"
-                      sx={{ width: "100%" }}
-                      type="submit"
-                      onClick={handleLogin}
-                    >
-                      Sign in
-                    </Button>
-                  )}
-                  {(!isValidEmail(email) || !password) && (
+                  {isValidEmail(email) &&
+                    password &&
+                    name &&
+                    confirmPassword &&
+                    password === confirmPassword && (
+                      <Button
+                        variant="contained"
+                        sx={{ width: "100%" }}
+                        type="submit"
+                        onClick={handleRegister}
+                      >
+                        Sign Up
+                      </Button>
+                    )}
+                  {(!isValidEmail(email) ||
+                    !password ||
+                    !name ||
+                    !confirmPassword ||
+                    password !== confirmPassword) && (
                     <Tooltip
                       title="Please enter your email ID and password to Sign in"
                       placement="bottom-end"
@@ -179,7 +234,7 @@ export default function LoginLayout({}: Readonly<{
                           type="submit"
                           disabled
                         >
-                          Sign in
+                          Sign Up
                         </Button>
                       </span>
                     </Tooltip>

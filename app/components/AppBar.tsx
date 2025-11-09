@@ -1,20 +1,18 @@
 "use client";
 
-import React from "react";
-import Overview from "../../public/img/dashboard/overview.svg";
-import Transactions from "../../public/img/dashboard/transactions.svg";
-import Account from "../../public/img/dashboard/account.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+import Transactions from "../../public/img/dashboard/transactions.svg";
+import Overview from "../../public/img/dashboard/overview.svg";
+import Account from "../../public/img/dashboard/account.svg";
 interface Props {
   tagName: string;
 }
 
-function AppBar(props: Props) {
+export const AppBar = (props: Props) => {
   return (
     <div className="flex gap-10 justify-center items-center py-2 border-t-2 border-b-2 border-dashed border-gray-200 max-sm:flex-col">
-      {/* <nav> */}
       <Link
         href="/dashboard/overview"
         className={`focus:bg-[#E9F1EE] expand-item ${
@@ -60,9 +58,6 @@ function AppBar(props: Props) {
           className="hover:bg-[#E9F1EE]"
         />
       </Link>
-      {/* </nav> */}
     </div>
   );
-}
-
-export default AppBar;
+};

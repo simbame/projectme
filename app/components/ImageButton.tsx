@@ -1,11 +1,10 @@
 import Image from "next/image";
-import React from "react";
 
 interface Props {
   src: string;
 }
 
-const ImageButton = (props: Props) => {
+export const ImageButton = (props: Props) => {
   return (
     <div>
       <Image
@@ -17,5 +16,3 @@ const ImageButton = (props: Props) => {
     </div>
   );
 };
-
-export default ImageButton;

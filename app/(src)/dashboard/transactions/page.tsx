@@ -1,6 +1,5 @@
-import React from "react";
-import { Button } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Button } from "@mui/material";
 
 export default function Page() {
   return (

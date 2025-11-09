@@ -19,7 +19,15 @@
   background-color: var(--primary-banner-bg-color);
 }
 
-.gradient-color {
+.gradient-color-first {
+  background-image: linear-gradient(180deg, #00a76f, #1b7048);
+}
+
+.gradient-color-second {
+  background-image: linear-gradient(180deg, #ffd45a, #ffab00);
+}
+
+.gradient-color-third {
   background-image: linear-gradient(180deg, #ffb177, #ff6d00);
 }
 

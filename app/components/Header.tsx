@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
 import Avatar from "@mui/material/Avatar";
-import Mark from "./Mark";
-import { clearUser } from "@/app/localStorage/local_storage";
 
-function Header() {
+import { clearUser } from "@/app/localStorage/localStorage";
+import { Mark } from "./Mark";
+
+export const Header = () => {
   const logout = () => {
     clearUser();
     window.location.href = "/login";
@@ -27,6 +27,4 @@ function Header() {
       </div>
     </div>
   );
-}
-
-export default Header;
+};

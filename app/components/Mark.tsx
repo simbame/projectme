@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Mark = () => {
+export const Mark = () => {
   return (
     <div>
       <div className="absolute top-5 left-5">
@@ -15,5 +15,3 @@ const Mark = () => {
     </div>
   );
 };
-
-export default Mark;
